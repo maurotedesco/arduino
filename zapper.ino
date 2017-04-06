@@ -233,7 +233,7 @@ void loop() {
     suona(1);
 
     //secondo ciclo di 7 minuti 
-    lcd.Display(); // accendo il display
+    lcd.display(); // accendo il display
     zapper(2);
     suona(2);
     
@@ -243,7 +243,7 @@ void loop() {
     suona(2);
     
     //Terzo ciclo di 7 minuti 
-    lcd.Display(); // accendo il display
+    lcd.display(); // accendo il display
     zapper(3);
     suona(3);
     
