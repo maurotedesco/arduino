@@ -7,7 +7,7 @@ Funzione con genera frequenza
 #include <LiquidCrystal.h>
 
 char array1[]="Pronto Premi BUT";  //the string to print on the LCD
-char array2[]="ZAPPER VER. 0.3 ";  //the string to print on the LCD
+char array2[]="ZAPPER VER. 0.4 ";  //the string to print on the LCD
 char array3[]="Time        ";  //the string to print on the LCD
 char array4[]="SEC        ";  //the string to print on the LCD
 char array5[]="Ciclo ZAPPER ";  //the string to print on the LCD
@@ -29,8 +29,8 @@ int timer = 11;
 int ledyellow = 12;
 int ledgreen = 13;
 // variabili teporali....secondi 
-int runFor7 = 420 ;
-int runFor20 = 1200;
+int runFor7 = 420 ; // 7 minuti -- 60 x 7 = 420
+int runFor20 = 1200; // 20 minuti -- 60 x 20 = 1200
 
 
 LiquidCrystal lcd(2, 3, 4, 5, 6, 7);
@@ -228,26 +228,33 @@ void loop() {
     suona(1);
 
      // primo ciclo di fermo 20 minuti
+    lcd.noDisplay(); // spengo il display
     riposo(1);
     suona(1);
 
     //secondo ciclo di 7 minuti 
-    
+    lcd.Display(); // accendo il display
     zapper(2);
     suona(2);
     
     // secondo ciclo di fermo 20 minuti
+    lcd.noDisplay(); // spengo il display
     riposo(2);
     suona(2);
-    //Terzo ciclo di 7 minuti 
     
+    //Terzo ciclo di 7 minuti 
+    lcd.Display(); // accendo il display
     zapper(3);
     suona(3);
+    
     lcd.clear();
     lcd.setCursor(0,0) ;
     lcd.print(array8);
     delay(10000);
-    
+    // avviso che e finito il ciclo
+    suona(3);
+    suona(3);
+    timer = 1; // azzero il timer per fermare il ciclo e sstampare attesa
    } else {   
       lcd.print(array1);
       lcd.setCursor(0,1);
